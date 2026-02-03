@@ -127,7 +127,7 @@ async function generateDoc(s: SymbolInfo, ctx: GenerateCtx): Promise<void> {
 
 export async function runDocs(opts: DocsOptions = {}): Promise<void> {
   const cachePath = path.resolve(opts.cache ?? '.cache/symdocs.level');
-  const model = String(opts.model ?? 'qwen3:4b');
+  const model = String(opts.model ?? 'qwen3-vl:2b-thinking-bf16');
   const force = Boolean(opts.force ?? false);
   const conc = Math.max(1, opts.concurrency ?? 4);
 
@@ -165,7 +165,7 @@ async function runCli() {
   const program = createPipelineProgram('symdocs-docs', 'Generate documentation drafts');
   program
     .option('--cache <path>', 'Cache directory', '.cache/symdocs.level')
-    .option('--model <name>', 'Model to use', 'qwen3:4b')
+    .option('--model <name>', 'Model to use', 'qwen3-vl:2b-thinking-bf16')
     .option('--force', 'Regenerate drafts even if cached')
     .option(
       '--concurrency <value>',
